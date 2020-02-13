@@ -114,7 +114,7 @@ const data = [
 
 */
 
-function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
@@ -134,6 +134,7 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
   articleBtn.appendChild(articleBtnOpen);
 
   article.classList.add('article');
+  articleTitle.classList.add('h2');
   articleDate.classList.add('date');
   articleBtn.classList.add('expandButton');
   articleBtnOpen.classList.add('article-open');
@@ -156,11 +157,16 @@ function createArticle(title, date, firstParagraph, secondParagraph, thirdParagr
     articleBtn.style.color = 'black';
   })
 
-  return createArticle;
+  articleBtn.addEventListener('click', (event) => {
+    articleCopy1.toggleClass('article-open');
+    // articleBtn.style.color = 'black';
+  })
+
+  return article;
 }
 
 const articles = document.querySelector('.articles');
 
-data.map(daeta => {
-  articles.appendChild(createArticle(daeta.title, daeta.date, daeta.articleCopy1, daeta.secondParagraph, daeta.thirdParagraph))
+data.map(item => {
+  return articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
 });
