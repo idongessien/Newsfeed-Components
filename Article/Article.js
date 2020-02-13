@@ -114,13 +114,53 @@ const data = [
 
 */
 
-function createArticle(title, copy){
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
-  const articleCopy = document.createElement('p');
+  const articleDate = document.createElement('p');
   const articleCopy1 = document.createElement('p');
   const articleCopy2 = document.createElement('p');
-  const articleBtn = document.createElement('span');
+  const articleCopy3 = document.createElement('p');
+  const articleBtn = document.createElement('div');
+  const articleBtnOpen = document.createElement('button');
+
+  articles.appendChild(article);
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleCopy1);
+  article.appendChild(articleCopy2);
+  article.appendChild(articleCopy3);
+  article.appendChild(articleBtn);
+  articleBtn.appendChild(articleBtnOpen);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  articleBtn.classList.add('expandButton');
+  articleBtnOpen.classList.add('article-open');
+  
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleCopy1.textContent = firstParagraph;
+  articleCopy2.textContent = secondParagraph;
+  articleCopy3.textContent = thirdParagraph;
+
+  articleBtn.textContent = 'Article Button';
+
+  articleBtn.addEventListener('mouseover', (event) => {
+    articleBtn.style.background = 'green';
+    articleBtn.style.color = 'yellow';
+  })
+
+  articleBtn.addEventListener('mouseout', (event) => {
+    articleBtn.style.background = 'none';
+    articleBtn.style.color = 'black';
+  })
+
+  return createArticle;
 }
 
-console.log(createArticle);
+const articles = document.querySelector('.articles');
+
+data.map(daeta => {
+  articles.appendChild(createArticle(daeta.title, daeta.date, daeta.articleCopy1, daeta.secondParagraph, daeta.thirdParagraph))
+});
