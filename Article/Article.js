@@ -99,6 +99,7 @@ const data = [
     <span class='expandButton'></span>
   </div>
 
+
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
@@ -112,3 +113,60 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleCopy1 = document.createElement('p');
+  const articleCopy2 = document.createElement('p');
+  const articleCopy3 = document.createElement('p');
+  const articleBtn = document.createElement('div');
+  const articleBtnOpen = document.createElement('button');
+
+  articles.appendChild(article);
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(articleCopy1);
+  article.appendChild(articleCopy2);
+  article.appendChild(articleCopy3);
+  article.appendChild(articleBtn);
+  articleBtn.appendChild(articleBtnOpen);
+
+  article.classList.add('article');
+  articleTitle.classList.add('h2');
+  articleDate.classList.add('date');
+  articleBtn.classList.add('expandButton');
+  articleBtnOpen.classList.add('article-open');
+  
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleCopy1.textContent = firstParagraph;
+  articleCopy2.textContent = secondParagraph;
+  articleCopy3.textContent = thirdParagraph;
+
+  articleBtn.textContent = 'Article Button';
+
+  articleBtn.addEventListener('mouseover', (event) => {
+    articleBtn.style.background = 'green';
+    articleBtn.style.color = 'yellow';
+  })
+
+  articleBtn.addEventListener('mouseout', (event) => {
+    articleBtn.style.background = 'none';
+    articleBtn.style.color = 'black';
+  })
+
+  articleBtn.addEventListener('click', (event) => {
+    articleCopy1.toggleClass('article-open');
+    // articleBtn.style.color = 'black';
+  })
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+data.map(item => {
+  return articles.appendChild(createArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph))
+});
